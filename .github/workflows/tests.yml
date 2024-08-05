@@ -27,4 +27,4 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm install
-          NODE_DEBUG=nightly-node npm run test
+          npm run test
