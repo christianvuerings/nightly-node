@@ -1,7 +1,10 @@
 import { test, describe } from "node:test";
 import { strict as assert } from "node:assert";
 import { install, latestVersion, nodePath, versions } from "./index.js";
-import { spawnSync } from "node:child_process";
+import { promisify } from "node:util";
+import { exec as execCallback } from "node:child_process";
+import { setTimeout } from "node:timers/promises";
+const exec = promisify(execCallback);
 
 describe("versions", () => {
   test("Returns a list of Node.js versions", async (t) => {
@@ -85,10 +88,12 @@ describe("install", () => {
   test("Downloads and installs the latest Node.js version & runs node", async (t) => {
     const nodeDirectory = await install();
     const nodeExec = nodePath(nodeDirectory);
-    const { stdout } = spawnSync(nodeExec, ["-v"], {
-      stdio: "pipe",
-      encoding: "utf-8",
-    });
+
+    // Not a fan of this but otherwise windows doesn't see that the file exists
+    if (process.platform === "win32") {
+      await setTimeout(5000);
+    }
+    const { stdout } = await exec(`${nodeExec} -v`);
     assert.ok(stdout.startsWith("v"), "Expected 'node -v' to return a version");
   });
 });
