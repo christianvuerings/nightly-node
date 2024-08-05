@@ -24,8 +24,9 @@ jobs:
         with:
           node-version: ${{ matrix.version }}
           cache: "npm"
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # To debug with ssh
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
       - name: Install and Build 🔧
         run: |
           npm install
