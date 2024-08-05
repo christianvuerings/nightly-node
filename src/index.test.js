@@ -85,10 +85,10 @@ describe("install", () => {
   test("Downloads and installs the latest Node.js version & runs node", async (t) => {
     const nodeDirectory = await install();
     const nodeExec = nodePath(nodeDirectory);
-    const { stdout } = spawnSync(nodeExec, ["-v"]);
-    assert.ok(
-      stdout.toString().startsWith("v"),
-      "Expected 'node -v' to return a version"
-    );
+    const { stdout } = spawnSync(nodeExec, ["-v"], {
+      stdio: "pipe",
+      encoding: "utf-8",
+    });
+    assert.ok(stdout.startsWith("v"), "Expected 'node -v' to return a version");
   });
 });
