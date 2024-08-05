@@ -11,6 +11,8 @@ export default async function decompressFile(filePath, outputDir) {
   const fileExt = extname(filePath).toLowerCase();
   const fileName = path.basename(filePath, fileExt);
 
+  debugLog(`Decompressing ${filePath} to ${outputDir}`);
+
   if (filePath.endsWith(".tar.gz" || filePath.endsWith(".zip"))) {
     const { stdout, stderr } = await exec(
       `tar -xzf "${filePath}" -C "${outputDir}"`
