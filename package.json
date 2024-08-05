@@ -1,0 +1,30 @@
+{
+  "name": "nightly-node",
+  "version": "0.0.1",
+  "description": "Run a Node.js nightly build",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "nightly"
+  ],
+  "author": {
+    "name": "Christian Vuerings",
+    "url": "https://christianvuerings.com"
+  },
+  "bin": {
+    "nightly-node": "src/cli.js"
+  },
+  "license": "MIT",
+  "files": [
+    "src/**/*.js",
+    "!src/**/*.test.js"
+  ],
+  "engines": {
+    "node": ">20.11.0"
+  }
+}

@@ -1,0 +1,30 @@
+name: Tests
+on:
+  pull_request:
+    branches:
+      - main
+  merge_group:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        version: [20.11, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+          cache: "npm"
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run test
