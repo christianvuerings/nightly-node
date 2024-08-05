@@ -12,7 +12,11 @@ jobs:
   build-and-deploy:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os:
+          - ubuntu-latest
+          - macos-latest
+          # TOFIX
+          # - windows-latest
         version: [20.11, 22]
     runs-on: ${{ matrix.os }}
     steps:
@@ -25,8 +29,8 @@ jobs:
           node-version: ${{ matrix.version }}
           cache: "npm"
       # To debug with ssh
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
       - name: Install and Build 🔧
         run: |
           npm install

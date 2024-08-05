@@ -88,11 +88,6 @@ describe("install", () => {
   test("Downloads and installs the latest Node.js version & runs node", async (t) => {
     const nodeDirectory = await install();
     const nodeExec = nodePath(nodeDirectory);
-
-    // Not a fan of this but otherwise windows doesn't see that the file exists
-    if (process.platform === "win32") {
-      await setTimeout(5000);
-    }
     const { stdout } = await exec(`${nodeExec} -v`);
     assert.ok(stdout.startsWith("v"), "Expected 'node -v' to return a version");
   });
