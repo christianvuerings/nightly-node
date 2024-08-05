@@ -27,8 +27,9 @@ export default async function decompressFile(filePath, outputDir) {
     if (stderr) throw new Error(stderr);
     debugLog(stdout);
   } else if (filePath.endsWith(".zip") && process.platform === "win32") {
-    const { stdout, stderr } = await exec(
-      `bsdtar -xf "${filePath}" -C "${outputDir}"`
+    const { stdout, stderr } = exec(
+      `Expand-Archive -Force "${filePath}" "${outputDir}"`,
+      { shell: "powershell.exe" }
     );
     if (stderr) throw new Error(stderr);
     debugLog(stdout);
