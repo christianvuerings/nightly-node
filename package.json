@@ -1,7 +1,7 @@
 {
   "name": "nightly-node",
   "version": "0.0.1",
-  "description": "Run a Node.js nightly build",
+  "description": "Run the latest Node.js nightly build",
   "main": "index.js",
   "type": "module",
   "scripts": {
