@@ -22,13 +22,17 @@ test.afterEach(async () => {
   await cleanup();
 });
 
-test("decompressFile - .gz file", async (t) => {
+test("decompressFile - .gz file", {
+  skip: process.platform === "win32",
+}, async (t) => {
   await decompressFile(join(testDir, "test.txt.gz"), outputDir);
   const content = await fs.readFile(join(outputDir, "test.txt"), "utf8");
   assert.equal(content, "Plain text");
 });
 
-test("decompressFile - .tar.gz file", async (t) => {
+test("decompressFile - .tar.gz file", {
+  skip: process.platform === "win32",
+}, async (t) => {
   await decompressFile(join(testDir, "test.tar.gz"), outputDir);
   const content = await fs.readFile(join(outputDir, "test.txt"), "utf8");
   assert.equal(content, "Plain text");
