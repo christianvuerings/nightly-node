@@ -27,7 +27,7 @@ export default async function decompressFile(filePath, outputDir) {
     if (stderr) throw new Error(stderr);
     debugLog(stdout);
   } else if (filePath.endsWith(".zip") && process.platform === "win32") {
-    const { stdout, stderr } = exec(
+    const { stdout, stderr } = await exec(
       `Expand-Archive -Force "${filePath}" "${outputDir}"`,
       { shell: "powershell.exe" }
     );

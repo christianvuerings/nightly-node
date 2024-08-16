@@ -3,7 +3,6 @@ import { strict as assert } from "node:assert";
 import { install, latestVersion, nodePath, versions } from "./index.js";
 import { promisify } from "node:util";
 import { exec as execCallback } from "node:child_process";
-import { setTimeout } from "node:timers/promises";
 const exec = promisify(execCallback);
 
 describe("versions", () => {

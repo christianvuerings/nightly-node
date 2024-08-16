@@ -16,7 +16,7 @@ jobs:
           - ubuntu-latest
           - macos-latest
           # TOFIX
-          # - windows-latest
+          - windows-latest
         version: [20.11, 22]
     runs-on: ${{ matrix.os }}
     steps:
